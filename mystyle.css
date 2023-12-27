@@ -1,0 +1,7 @@
+#container {
+    border: 10px;
+    border-color: black;
+    justify-content: center;
+    display: flex;
+}
+

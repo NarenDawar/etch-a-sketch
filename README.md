@@ -1,0 +1,1 @@
+This program is essentially just drawing whatever you want on a pad. There will be options to change the pixel size and reset the board.
