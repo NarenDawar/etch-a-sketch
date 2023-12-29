@@ -1,29 +1,34 @@
-const container = document.querySelector("#container");
-let vars;
+let container = document.querySelector('#container');
+
 function createGrid(param) {
-    for(let i = 0; i < param; i++) {
-        for(let j = 0; j < param; j++) {
-            const element = document.createElement('div');
-            element.classList.add('box');
-            container.appendChild(element);
+    for(let i = 0;i < param*param; i++) {
+        const element = document.createElement('div');
+        element.classList.add('box');
+        const boxSize = 500/param;
+        element.style.height = boxSize + 'px';
+        element.style.width = boxSize + 'px';
+        element.onmouseover = function() {
+            this.style.background = 'black';
         }
-        vars = document.createElement('hr');
-        vars.classList.add('hr');
-        container.appendChild(vars);
+        container.appendChild(element);
     }
 }
-
-
-let num_of_pixels = prompt('Enter the dimension you want for the drawing. Max is 100 and the min is 5.');
-while(num_of_pixels > 100 || num_of_pixels < 5) {
-    num_of_pixels = prompt('Enter a number within the guidelines:');
+    
+let button1 = document.querySelector('.button');
+function buttonFunc() {
+    let boxes = document.querySelectorAll('.box')
+    boxes.forEach(box => {
+        box.remove();//removes old grid
+    });
+    createGrid(ask());
 }
-createGrid(num_of_pixels);
-let boxes = (document.querySelectorAll('.box'));
-boxes.forEach(
-    function(box) {
-        box.addEventListener('mousemove', function(e) {
-            e.target.style.background = 'black';
-        })
+
+function ask() {
+    let num_of_pixels = prompt('Enter the dimension you want for the drawing. Max is 100 and the min is 5.');
+    while(num_of_pixels > 100 || num_of_pixels < 5) {
+        num_of_pixels = prompt('Enter a number within the guidelines:');
     }
-);
+    return num_of_pixels;
+}
+/*----------------------------------*/
+createGrid(ask());
